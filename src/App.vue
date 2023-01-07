@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<main class="bg-light d-flex justify-content-between flex-column m-0 p-0 h-100vh relative">
+		<header class="d-flex flex-nowrap align-items-center bg-primary p-2">
+			<Me></Me>
+			<h1 class="text-center flex-grow-1 text-dark pr-5">Verben Konjugieren</h1>
+		</header>
+		<router-view />
+		<FooterVue>
+		</FooterVue>
+	</main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Me from "./components/Me.vue";
+import FooterVue from "./components/Footer.vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+	name: "App",
+	components: { Me, FooterVue },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+main {
+	height: 100vh;
+}
+
+h1 {
+	width: 100vw;
+	float: top;
 }
 </style>
