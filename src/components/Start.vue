@@ -5,27 +5,21 @@
 		</h4>
 		<b-form class="pa-2 d-flex justify-content-around w-100 ">
 			<b-form-group class="p-2">
-				<h4>Indicativ</h4>
-				<b-form-checkbox v-for="tense in indicativ" v-model="verbalTenses" :value="tense.value"
+				<h4>Indicativo</h4>
+				<b-form-checkbox v-for="tense in indicativ" v-model="verbalTenses" :value="tense"
 					:key="tense.text">{{ tense.text }}</b-form-checkbox>
 			</b-form-group>
 
 			<b-form-group class="p-2">
-				<h4>Konjunktiv1</h4>
-				<b-form-checkbox v-for="tense in konjunktiv1" v-model="verbalTenses" :value="tense.value"
+				<h4>Subjuntivo</h4>
+				<b-form-checkbox v-for="tense in subjuntive" v-model="verbalTenses" :value="tense"
 					:key="tense.text">{{ tense.text }}</b-form-checkbox>
 			</b-form-group>
 
 			<b-form-group class="p-2">
-				<h4>Konjunktiv2</h4>
-				<b-form-checkbox v-for="tense in konjunktiv2" v-model="verbalTenses" :value="tense.value"
+				<h4>Condicional</h4>
+				<b-form-checkbox v-for="tense in conditional" v-model="verbalTenses" :value="tense"
 					:key="tense.text">{{ tense.text }}</b-form-checkbox>
-			</b-form-group>
-
-			<b-form-group class="p-2">
-				<h4>Verbo auxiliar</h4>
-				<b-form-radio v-model="auxVerb" label="Sein" value="SEIN"> Sein </b-form-radio>
-				<b-form-radio v-model="auxVerb" label="Haben" value="HABEN"> Haben </b-form-radio>
 			</b-form-group>
 		</b-form>
 
@@ -60,24 +54,28 @@ export default {
 			verbalSetsWithNames: sets.map((arr) => arr.map((element) => element.name)),
 			verbalSet: [],
 			indicativ: [
-				{ value: "PRASENS", text: "Prasens" },
-				{ value: "PRATERITUM", text: "Prateritum" },
-				{ value: "FUTUR1", text: "Futur1" },
-				{ value: "FUTUR2", text: "Futur2" },
-				{ value: "PERFEKT", text: "Perfekt" },
-				{ value: "PLUSQUAMPERFEKT", text: "Plusquamperferkt" },
+				{ value: "INDICATIVE_PRESENT", text: "Presente" },
+				{ value: 'INDICATIVE_IMPERFECT', text: "Pretérito imperfeito" },
+				{ value: "INDICATIVE_PRETERITE", text: "Pretérito perfecto simple" },
+				{ value: "INDICATIVE_FUTURE", text: "Futuro" },
+				{ value: "INDICATIVE_PERFECT", text: "Pretérito perfecto compuesto" },
+				{ value: "INDICATIVE_PLUPERFECT", text: "Pretérito pluscuamperfecto" },
+				{ value: "INDICATIVE_FUTURE_PERFECT", text: "Futuro perfecto" },
+				{ value: "INDICATIVE_PRETERITE_PERFECT", text: "Pretérito anterior" },
 			],
-			konjunktiv1: [
-				{ value: "KONJUNKTIV1_PRASENS", text: "Prasens" },
-				{ value: "KONJUNKTIV1_FUTUR1", text: "Futur1" },
-				{ value: "KONJUNKTIV1_PERFEKT", text: "Perfekt" },
+			subjuntive: [
+				{ value: "SUBJUNCTIVE_PRESENT", text: "Presente" },
+				{ value: "SUBJUNCTIVE_IMPERFECT_RA", text: "Pretérito imperfecto (ra)" },
+				{ value: "SUBJUNCTIVE_IMPERFECT_SE", text: "Pretérito imperfecto (se)" },
+				{ value: "SUBJUNCTIVE_FUTURE", text: "Futuro" },
+				{ value: "SUBJUNCTIVE_PERFECT", text: "Pretérito perfecto" },
+				{ value: "SUBJUNCTIVE_PLUPERFECT", text: "Pretérito pluscuamperfecto" },
+				{ value: 'SUBJUNCTIVE_FUTURE_PERFECT', text: "Futuro perfecto" }
 			],
-			konjunktiv2: [
-				{ value: "KONJUNKTIV2_PRATERITUM", text: "Prateritum" },
-				{ value: "KONJUNKTIV2_FUTUR1", text: "Futur1" },
-				{ value: "KONJUNKTIV2_FUTUR2", text: "Futur2" },
+			conditional: [
+				{ value: "CONDITIONAL_PRESENT", text: "Condicional" },
+				{ value: "CONDITIONAL_PERFECT", text: "Condicional perfecto" },
 			],
-			auxVerb: "SEIN",
 			verbsToBeUsed: "default",
 			customSet: "",
 		};
@@ -104,7 +102,6 @@ export default {
 				return;
 			}
 			await this.$store.commit("setVerbalTenses", this.verbalTenses);
-			await this.$store.commit("setAuxVerb", this.auxVerb);
 			await this.$store.commit("setVerbs", selectedSet);
 			await this.$store.commit("clearCurrentIndex");
 			await this.$store.commit("clearPoints");

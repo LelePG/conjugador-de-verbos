@@ -1,20 +1,11 @@
 <template>
 	<div class="bg-light ">
 		<div class="d-flex flex-column align-items-center text-dark pt-2">
-			<h4 class="text-sm-center">O tempo é {{ getCurrentVerbalTense }}</h4>
+			<h4 class="text-sm-center">O tempo é {{ getCurrentVerbalTense.text }}</h4>
 			<h5>Pontos: {{ getPoints }}</h5>
 		</div>
 		<div class="p-0 m-auto d-flex justify-content-around flex-wrap">
-			<Conjugations v-for="verb in verbs" :key="verb.name" :verb="verb" :verbalTense="verbalTenses[index]" />
-		</div>
-		<div class="text-center">
-			<CharButton char="ß" />
-			<CharButton char="ä" />
-			<CharButton char="ö" />
-			<CharButton char="ü" />
-			<CharButton char="Ä" />
-			<CharButton char="Ö" />
-			<CharButton char="Ü" />
+			<Conjugations v-for="verb in verbs" :key="verb.name" :verb="verb" :verbalTense="verbalTenses[index].value" />
 		</div>
 
 		<div class="text-center">
@@ -34,12 +25,10 @@
 <script>
 import Conjugations from "./Conjugations.vue";
 import { mapGetters, mapMutations } from "vuex";
-import CharButton from "./CharButton.vue";
 
 export default {
 	components: {
 		Conjugations,
-		CharButton,
 	},
 	computed: {
 		...mapGetters(["getPoints", "getVerbs", "getVerbalTenses", "getCurrentVerbalTense", "getVerbs", "getAvailableVerbalTenses", "getCurrentIndex"]),

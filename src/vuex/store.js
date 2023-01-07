@@ -9,7 +9,6 @@ export default new Vuex.Store({
     verbs: [],
     points : 0,
     verbalTenses: [],
-    auxVerb: "",
     currentIndex: 0,
     visualizationStyle: "",
     currentArray:[]
@@ -27,11 +26,8 @@ export default new Vuex.Store({
     getVerbalTenses: function(state){
       return state.verbalTenses
     },
-    getAuxVerb : function(state){
-      return state.auxVerb
-    },
     getCurrentVerbalTense : function(state){
-      return state.verbalTenses[state.currentIndex].trim()
+      return state.verbalTenses[state.currentIndex]
     },
     getAvailableVerbalTenses : function(state){
       return state.verbalTenses.length -1
@@ -48,6 +44,7 @@ export default new Vuex.Store({
       state.points += points
     },
     setVerbalTenses: function(state, verbalTenses){
+      console.log(verbalTenses)
       state.verbalTenses = verbalTenses
     },
     setAuxVerb: function(state, auxVerb){

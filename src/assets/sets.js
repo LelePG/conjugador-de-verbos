@@ -1,49 +1,49 @@
 const set1 = [
-	{ name: "sein", translation: "ser" },
-	{ name: "werden", translation: "ficar, torna-se" },
-	{ name: "können", translation: "poder" },
-	{ name: "sagen", translation: "dizer" },
-	{ name: "machen", translation: "fazer" },
+	{ name: "ser", translation: "ser" },
+	{ name: "taer", translation: "trazer" },
+	{ name: "poder", translation: "poder" },
+	{ name: "decir", translation: "dizer" },
+	{ name: "hacer", translation: "fazer" },
 ];
 
 const set2 = [
-	{ name: "kommen", translation: "vir" },
-	{ name: "sollen", translation: "dever" },
-	{ name: "gehen", translation: "ir" },
-	{ name: "sehen", translation: "ver" },
-	{ name: "stehen", translation: "estar de pé" },
+	{ name: "venir", translation: "vir" },
+	{ name: "jugar", translation: "jogar" },
+	{ name: "ir", translation: "ir" },
+	{ name: "ver", translation: "ver" },
+	{ name: "volver", translation: "voltar" },
 ];
 
 const set3 = [
-	{ name: "finden", translation: "achar" },
-	{ name: "bleiben", translation: "ficar" },
-	{ name: "heißen", translation: "chamar-se" },
-	{ name: "nehmen", translation: "tomar, pegar" },
-	{ name: "dürfen", translation: "poder, dever" },
+	{ name: "empezar", translation: "começar" },
+	{ name: "tener", translation: "ter" },
+	{ name: "comprar", translation: "comprar" },
+	{ name: "vivir", translation: "viver" },
+	{ name: "oir", translation: "ouvir" },
 ];
 
 const set4 = [
-	{ name: "glauben", translation: "acreditar" },
-	{ name: "sprechen", translation: "falar" },
-	{ name: "leben", translation: "viver" },
-	{ name: "fragen", translation: "perguntar" },
-	{ name: "stellen", translation: "colocar, pôr" },
+	{ name: "elegir", translation: "escolher" },
+	{ name: "hablar", translation: "falar" },
+	{ name: "coger", translation: "pegar" },
+	{ name: "beber", translation: "beber" },
+	{ name: "escribir", translation: "escrever" },
 ];
 
 const set5 = [
-	{ name: "spielen", translation: "jogar, tocar" },
-	{ name: "arbeiten", translation: "trabalhar" },
-	{ name: "brauchen", translation: "precisar" },
-	{ name: "lernen", translation: "aprender" },
-	{ name: "verstehen", translation: "entender" },
+	{ name: "traer", translation: "trazer" },
+	{ name: "trabajar", translation: "trabalhar" },
+	{ name: "dormir", translation: "dormir" },
+	{ name: "dar", translation: "dar" },
+	{ name: "salir", translation: "sair" },
 ];
 
 const set6 = [
-	{ name: "schreiben", translation: "escrever" },
-	{ name: "fallen", translation: "cair" },
-	{ name: "gehören", translation: "pertencer" },
-	{ name: "suchen", translation: "procurar" },
-	{ name: "versuchen", translation: "tentar" },
+	{ name: "comer", translation: "comer" },
+	{ name: "poner", translation: "colocar" },
+	{ name: "leer", translation: "ler" },
+	{ name: "conocer", translation: "conhecer" },
+	{ name: "cantar", translation: "cantar" },
 ];
 
 const setArray = [set1,set2,set3,set4,set5,set6];
