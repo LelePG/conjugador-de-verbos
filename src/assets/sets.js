@@ -1,6 +1,6 @@
 const set1 = [
 	{ name: "ser", translation: "ser" },
-	{ name: "taer", translation: "trazer" },
+	{ name: "traer", translation: "trazer" },
 	{ name: "poder", translation: "poder" },
 	{ name: "decir", translation: "dizer" },
 	{ name: "hacer", translation: "fazer" },
