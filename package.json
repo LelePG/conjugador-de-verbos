@@ -8,14 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@jirimracek/conjugate-esp": "^2.3.6",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.8.3",
-    "german-verbs": "^4.2.0",
-    "german-verbs-dict": "^2.2.0",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "raw-loader": "^4.0.2",
-    "spanish-verbs": "^2.2.6",
     "vue": "^2.6.14",
     "vue-router": "^3.5.3",
     "vuetify": "^2.6.0",

@@ -6,20 +6,26 @@
 		<b-form class="pa-2 d-flex justify-content-around w-100 ">
 			<b-form-group class="p-2">
 				<h4>Indicativo</h4>
-				<b-form-checkbox v-for="tense in indicativ" v-model="verbalTenses" :value="tense"
-					:key="tense.text">{{ tense.text }}</b-form-checkbox>
+				<b-form-checkbox v-for="tense in indicative" v-model="verbalDescriptions" :value="`Indicativo-${tense.value}`"
+					:key="`Indicativo-${tense.value}}`">{{
+						tense.text
+					}}</b-form-checkbox>
 			</b-form-group>
 
 			<b-form-group class="p-2">
 				<h4>Subjuntivo</h4>
-				<b-form-checkbox v-for="tense in subjuntive" v-model="verbalTenses" :value="tense"
-					:key="tense.text">{{ tense.text }}</b-form-checkbox>
+				<b-form-checkbox v-for="tense in subjuntive" v-model="verbalDescriptions" :value="`Subjuntivo-${tense.value}`"
+					:key="`Subjuntivo-${tense.value}}`">{{
+						tense.text
+					}}</b-form-checkbox>
 			</b-form-group>
 
 			<b-form-group class="p-2">
-				<h4>Condicional</h4>
-				<b-form-checkbox v-for="tense in conditional" v-model="verbalTenses" :value="tense"
-					:key="tense.text">{{ tense.text }}</b-form-checkbox>
+				<h4>Imperativo</h4>
+				<b-form-checkbox v-for="tense in imperative" v-model="verbalDescriptions" :value="`Imperativo-${tense.value}`"
+					:key="`Imperativo-${tense.value}}`">{{
+						tense.text
+					}}</b-form-checkbox>
 			</b-form-group>
 		</b-form>
 
@@ -50,40 +56,43 @@ import sets from "../assets/sets.js";
 export default {
 	data: function () {
 		return {
-			verbalTenses: [],
+			verbalDescriptions: [],
 			verbalSetsWithNames: sets.map((arr) => arr.map((element) => element.name)),
 			verbalSet: [],
-			indicativ: [
-				{ value: "INDICATIVE_PRESENT", text: "Presente" },
-				{ value: 'INDICATIVE_IMPERFECT', text: "Pretérito imperfeito" },
-				{ value: "INDICATIVE_PRETERITE", text: "Pretérito perfecto simple" },
-				{ value: "INDICATIVE_FUTURE", text: "Futuro" },
-				{ value: "INDICATIVE_PERFECT", text: "Pretérito perfecto compuesto" },
-				{ value: "INDICATIVE_PLUPERFECT", text: "Pretérito pluscuamperfecto" },
-				{ value: "INDICATIVE_FUTURE_PERFECT", text: "Futuro perfecto" },
-				{ value: "INDICATIVE_PRETERITE_PERFECT", text: "Pretérito anterior" },
+			indicative: [
+				{ value: "CondicionalCompuesto", text: "Condicional Compuesto" },
+				{ value: "CondicionalSimple", text: "Condicional Simple" },
+				{ value: "FuturoImperfecto", text: "Futuro Imperfecto" },
+				{ value: "FuturoPerfecto", text: "Futuro Perfecto" },
+				{ value: "Presente", text: "Presente" },
+				{ value: "PreteritoAnterior", text: "Pretérito Anterior" },
+				{ value: "PreteritoImperfecto", text: "Pretérito Imperfecto" },
+				{ value: "PreteritoIndefinido", text: "Pretérito Indefinido" },
+				{ value: "PreteritoPerfecto", text: "Pretérito Perfecto" },
+				{ value: "PreteritoPluscuamperfecto", text: "Pretérito Pluscuamperfecto" },
 			],
 			subjuntive: [
-				{ value: "SUBJUNCTIVE_PRESENT", text: "Presente" },
-				{ value: "SUBJUNCTIVE_IMPERFECT_RA", text: "Pretérito imperfecto (ra)" },
-				{ value: "SUBJUNCTIVE_IMPERFECT_SE", text: "Pretérito imperfecto (se)" },
-				{ value: "SUBJUNCTIVE_FUTURE", text: "Futuro" },
-				{ value: "SUBJUNCTIVE_PERFECT", text: "Pretérito perfecto" },
-				{ value: "SUBJUNCTIVE_PLUPERFECT", text: "Pretérito pluscuamperfecto" },
-				{ value: 'SUBJUNCTIVE_FUTURE_PERFECT', text: "Futuro perfecto" }
+				{ value: "FuturoImperfecto", text: "Futuro Imperfecto" },
+				{ value: "FuturoPerfecto", text: "Futuro Perfecto" },
+				{ value: "Presente", text: "Presente" },
+				{ value: "PreteritoImperfectoRa", text: "Pretérito Imperfecto (RA)" },
+				{ value: "PreteritoImperfectoSe", text: "Pretérito Imperfecto (SE)" },
+				{ value: "PreteritoPerfecto", text: "Pretérito Perfecto" },
+				{ value: "PreteritoPluscuamperfectoRa", text: "Pretérito Pluscuamperfecto (RA)" },
+				{ value: "PreteritoPluscuamperfectoSe", text: "Pretérito Pluscuamperfecto (SE)" },
 			],
-			conditional: [
-				{ value: "CONDITIONAL_PRESENT", text: "Condicional" },
-				{ value: "CONDITIONAL_PERFECT", text: "Condicional perfecto" },
+			imperative: [
+				{ value: "Afirmativo", text: "Afirmativo" },
+				{ value: "Negativo", text: "Negativo" },
 			],
 			verbsToBeUsed: "default",
 			customSet: "",
 		};
 	},
 	methods: {
-		...mapMutations[("setVerbalTenses", "setAuxVerb", "setVerbs", "clearCurrentIndex", "clearPoints")],
+		...mapMutations[("setVerbalDescriptions", "setAuxVerb", "setVerbs", "clearCurrentIndex", "clearPoints")],
 		loadInfo: async function () {
-			if (!this.verbalTenses.length) {
+			if (!this.verbalDescriptions.length) {
 				window.alert("Você precisa selecionar pelo menos um tempo.");
 				return;
 			}
@@ -101,7 +110,7 @@ export default {
 				window.alert("Selecione um set de verbos");
 				return;
 			}
-			await this.$store.commit("setVerbalTenses", this.verbalTenses);
+			await this.$store.commit("setVerbalDescriptions", this.verbalDescriptions);
 			await this.$store.commit("setVerbs", selectedSet);
 			await this.$store.commit("clearCurrentIndex");
 			await this.$store.commit("clearPoints");

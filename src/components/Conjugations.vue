@@ -10,35 +10,32 @@
 				<line x1="9.7" y1="17" x2="14.3" y2="17" />
 			</svg>
 		</div>
-		<p v-if="error">{{ error }}</p>
-		<ul v-else>
-			<PersonConjugation person="yo" :answer="verbalPeople.yo.conjugation" :showAnswer="showAnswer"
+		<p v-if="verb.error">Houve um problema com o verbo {{ this.verb.name }} e ele não pode ser conjugado.
+			Verifique a digitação dele na tela inicial e tente novamente.</p>
+		<ul v-else> 
+			<PersonConjugation person="yo" :answer="verbalPeople.yo" :showAnswer="showAnswer"
 				:correctConjugation="verifyAnswers" />
-			<PersonConjugation person="tú" :answer="verbalPeople.tu.conjugation" :showAnswer="showAnswer"
+			<PersonConjugation person="tú" :answer="verbalPeople.tu" :showAnswer="showAnswer"
 				:correctConjugation="verifyAnswers" />
-			<PersonConjugation person="él/ella/usted" :answer="verbalPeople.usted.conjugation" :showAnswer="showAnswer"
+			<PersonConjugation person="él/ella/usted" :answer="verbalPeople.usted" :showAnswer="showAnswer"
 				:correctConjugation="verifyAnswers" />
-			<PersonConjugation person="nosotros/nosotras" :answer="verbalPeople.nosotros.conjugation" :showAnswer="showAnswer"
-				:correctConjugation="verifyAnswers" />
-			<PersonConjugation person="vosotros/vosotras" :answer="verbalPeople.vosotros.conjugation" :showAnswer="showAnswer"
-				:correctConjugation="verifyAnswers" />
-			<PersonConjugation person="ellos/ellas/ustedes" :answer="verbalPeople.ustedes.conjugation" :showAnswer="showAnswer"
-				:correctConjugation="verifyAnswers" />
+			<PersonConjugation person="nosotros/nosotras" :answer="verbalPeople.nosotros"
+				:showAnswer="showAnswer" :correctConjugation="verifyAnswers" />
+			<PersonConjugation person="vosotros/vosotras" :answer="verbalPeople.vosotros"
+				:showAnswer="showAnswer" :correctConjugation="verifyAnswers" />
+			<PersonConjugation person="ellos/ellas/ustedes" :answer="verbalPeople.ustedes"
+				:showAnswer="showAnswer" :correctConjugation="verifyAnswers" />
 		</ul>
-		<b-button v-if="!error" class="bg-primary text-dark" block @click="verificaResposta"> Verificar
+		<b-button v-if="!verb.error" class="bg-primary text-dark" block @click="verificaResposta"> Verificar
 		</b-button>
 	</div>
 </template>
 
 <script>
-
-import { mapGetters } from "vuex";
 import PersonConjugation from "./PersonConjugation.vue";
 
-const SpanishVerbs = require('spanish-verbs');
-
 export default {
-	props: ["verbalTense", "verb"],
+	props: ["verb"],
 	components: {
 		PersonConjugation,
 	},
@@ -46,48 +43,37 @@ export default {
 		return {
 			verifyAnswers: false,
 			showAnswer: false,
-			error: "",
 			verbalPeople: {
-				yo: { person: 0 },
-				tu: { person: 1 },
-				usted: { person: 2 },
-				nosotros: { person: 3 },
-				vosotros: { person: 4 },
-				ustedes: { person: 5 },
+				yo: [],
+				tu: [],
+				usted: [],
+				nosotros: [],
+				vosotros: [],
+				ustedes: [],
 			},
 		};
 	},
-	computed: {
-		...mapGetters(["getAuxVerb", "getCurrentVerbalTense"]),
-		auxVerb: function () {
-			return this.getAuxVerb
-		},
-	},
-	watch: {
-		'getCurrentVerbalTense': function () {
-			this.showAnswer = false
-			this.updateVerb()
-		}
-	},
+
+	// watch: {
+	// 	'getCurrentVerbalTense': function () {
+	// 		this.showAnswer = false
+	// 		this.updateVerb()
+	// 	}
+	// },
 	methods: {
 		verificaResposta: function () {
 			this.verifyAnswers = !this.verifyAnswers;
 		},
-		updateVerb: function () {
-			try {
-				for (let verbalPerson of Object.values(this.verbalPeople)) {
-					const conjugationFromAPI = SpanishVerbs.getConjugation(this.verb?.name?.trim(), 
-					this.verbalTense?.trim(), verbalPerson.person);
-					verbalPerson.conjugation = conjugationFromAPI;
-				}
-			} catch (e) {
-				this.error = `Houve um problema com o verbo ${this.verb.name} e ele não pode ser conjugado.\nVerifique a digitação dele na tela inicial e tente novamente.`
-				console.log(e)
-			}
-		},
 	},
 	created: function () {
-		this.updateVerb();
+		this.verbalPeople = {
+			yo: this.verb.conjugation[0],
+			tu: this.verb.conjugation[1],
+			usted: this.verb.conjugation[2],
+			nosotros: this.verb.conjugation[3],
+			vosotros: this.verb.conjugation[4],
+			ustedes: this.verb.conjugation[5],
+		}
 	}
 };
 </script>
