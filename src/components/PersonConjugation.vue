@@ -1,8 +1,8 @@
 <template>
 	<li class="text-dark d-flex justify-content-between m-1 w-100">
-		<label class="mr-2">{{ person }}</label>
-		<input v-if="showAnswer" type="text" :name="person" :placeholder="answer" disabled :class="inputClasses" />
-		<input v-else type="text" :name="person" v-model="userInput" :id="inputId"
+		<label class="mr-2">{{ data.person }}</label>
+		<input v-if="showAnswer" type="text" :name="data.person" :placeholder="data.conjugation" disabled :class="inputClasses" />
+		<input v-else type="text" :name="data.person" v-model="userInput" :id="data.id"
 			@keydown="changeFocusToNextInput($event)" :class="inputClasses" />
 	</li>
 </template>
@@ -11,7 +11,7 @@
 import { mapMutations, mapGetters } from "vuex";
 
 export default {
-	props: ["person", "answer", "showAnswer", "correctConjugation", "inputId", "changeFocusToNextInput"],
+	props: ["data", "showAnswer", "correctConjugation", "changeFocusToNextInput"],
 	data: function () {
 		return {
 			userInput: "",
@@ -57,7 +57,7 @@ export default {
 	methods: {
 		...mapMutations(["addPoints"]),
 		conjugationIsCorrect() {
-			return this.userInput.toLowerCase().trim() === this.answer.toLowerCase().trim();
+			return this.userInput.toLowerCase().trim() === this.data.conjugation.toLowerCase().trim();
 		},
 	},
 }

@@ -16,7 +16,7 @@
 			</router-link>
 			<b-button v-if="index > 0" class="bg-primary text-dark mx-2 my-1" @click="decrementIndex">Anterior
 			</b-button>
-			<b-button v-if="index < getAvailableVerbalDescriptions" class="bg-primary text-dark mx-2 my-1"
+			<b-button v-if="index < (getTotalTenses - 1)" class="bg-primary text-dark mx-2 my-1"
 				@click="incrementIndex">Próximo
 			</b-button>
 		</div>
@@ -35,11 +35,12 @@ export default {
 		Conjugations,
 	},
 	computed: {
-		...mapGetters(["getPercentage", "getVerbs", "getVerbalDescriptions", "getCurrentIndex"]),
+		...mapGetters(["getPercentage", "getVerbs", "getTotalTenses", "getVerbalDescriptions", "getCurrentIndex"]),
 		index: function () {
 			return this.getCurrentIndex
 		},
 		currentVerb: function () {
+			console.log(this.conjugationData[this.index])
 			return this.conjugationData[this.index];
 		},
 	},

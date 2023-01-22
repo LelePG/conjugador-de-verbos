@@ -28,6 +28,9 @@ export default new Vuex.Store({
 		getCurrentIndex: function (state) {
 			return state.currentIndex;
 		},
+		getTotalTenses(state){
+			return state.verbalDescriptions.length;
+		}
 	},
 	mutations: {
 		addPoints: function (state) {
