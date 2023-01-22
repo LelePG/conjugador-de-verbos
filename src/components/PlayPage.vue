@@ -1,13 +1,12 @@
 <template>
-	<div class="bg-light ">
+	<div class="bg-light">
 		<div class="d-flex flex-column align-items-center text-dark pt-2">
-			<h4 class="text-sm-center">O modo é {{ this.conjugationData[index].mode }}</h4>
+			<h4 class="text-sm-center">O tempo é {{ currentVerb.tense }}</h4>
 			<h5>Pontos: {{ getPoints }}</h5>
 		</div>
 		<div class="p-0 m-auto d-flex justify-content-around flex-wrap">
-			<Conjugations v-for="verb in this.conjugationData[index].verbs" :key="verb.name" :verb="verb" />
+			<Conjugations v-for="verb in currentVerb.verbs" :key="`${currentVerb.tense}-${verb.name}`" :verb="verb" />
 		</div>
-
 		<div class="text-center">
 			<router-link to="/">
 				<b-button class="bg-primary text-dark mx-2 my-1">Voltar</b-button>
@@ -17,7 +16,6 @@
 			<b-button v-if="index < getAvailableVerbalDescriptions" class="bg-primary text-dark mx-2 my-1"
 				@click="incrementIndex">Próximo
 			</b-button>
-			<b-button class="bg-primary text-dark mx-2 my-3" @click="clearAnswers">Limpar</b-button>
 		</div>
 	</div>
 </template>
@@ -35,8 +33,11 @@ export default {
 	computed: {
 		...mapGetters(["getPoints", "getVerbs", "getVerbalDescriptions", "getCurrentVerbalTense", "getVerbs", "getAvailableVerbalDescriptions", "getCurrentIndex"]),
 		index: function () {
-			return this.getCurrentIndex;
-		}
+			return this.getCurrentIndex
+		},
+		currentVerb: function () {
+			return this.conjugationData[this.index];
+		},
 	},
 	data: function () {
 		return {
@@ -53,10 +54,6 @@ export default {
 		decrementIndex: function () {
 			this.$store.commit("setCurrentIndex", -1);
 		},
-		clearAnswers: function () {
-			this.decrementIndex();
-			this.incrementIndex();
-		}
 	},
 	created: function () {
 		this.allConjugationsOfVerbs = this.getVerbs.map(verb => {
@@ -69,20 +66,18 @@ export default {
 		})
 
 		this.conjugationData = this.getVerbalDescriptions.map(verbalDescription => {
-			const [mode, tense] = verbalDescription.split("-")
+			const [mode, tense, displayTense] = verbalDescription.split("-")
 			const verbConjugations = this.allConjugationsOfVerbs.map(verb => {
 				if (!verb.erro) {
-					return { name: verb.name, translation: verb.translation, conjugation: verb.conjugations[mode][tense] }
+					let conjugation = verb.conjugations[mode][tense]
+					return { name: verb.name, translation: verb.translation, conjugation }
 				} else {
 					return { ...verb }
 				}
 			})
-			return { mode, tense, verbs: [...verbConjugations] }
+			return { mode, tense: displayTense, verbs: [...verbConjugations] }
 		})
 	},
-	updated: function () {
-		this.currentVerbalDescription = this.getCurrentVerbalDescription;
-	}
 };
 </script>
 

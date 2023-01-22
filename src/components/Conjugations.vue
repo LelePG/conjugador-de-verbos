@@ -12,19 +12,19 @@
 		</div>
 		<p v-if="verb.error">Houve um problema com o verbo {{ this.verb.name }} e ele não pode ser conjugado.
 			Verifique a digitação dele na tela inicial e tente novamente.</p>
-		<ul v-else> 
+		<ul v-else>
 			<PersonConjugation person="yo" :answer="verbalPeople.yo" :showAnswer="showAnswer"
 				:correctConjugation="verifyAnswers" />
 			<PersonConjugation person="tú" :answer="verbalPeople.tu" :showAnswer="showAnswer"
 				:correctConjugation="verifyAnswers" />
 			<PersonConjugation person="él/ella/usted" :answer="verbalPeople.usted" :showAnswer="showAnswer"
 				:correctConjugation="verifyAnswers" />
-			<PersonConjugation person="nosotros/nosotras" :answer="verbalPeople.nosotros"
-				:showAnswer="showAnswer" :correctConjugation="verifyAnswers" />
-			<PersonConjugation person="vosotros/vosotras" :answer="verbalPeople.vosotros"
-				:showAnswer="showAnswer" :correctConjugation="verifyAnswers" />
-			<PersonConjugation person="ellos/ellas/ustedes" :answer="verbalPeople.ustedes"
-				:showAnswer="showAnswer" :correctConjugation="verifyAnswers" />
+			<PersonConjugation person="nosotros/nosotras" :answer="verbalPeople.nosotros" :showAnswer="showAnswer"
+				:correctConjugation="verifyAnswers" />
+			<PersonConjugation person="vosotros/vosotras" :answer="verbalPeople.vosotros" :showAnswer="showAnswer"
+				:correctConjugation="verifyAnswers" />
+			<PersonConjugation person="ellos/ellas/ustedes" :answer="verbalPeople.ustedes" :showAnswer="showAnswer"
+				:correctConjugation="verifyAnswers" />
 		</ul>
 		<b-button v-if="!verb.error" class="bg-primary text-dark" block @click="verificaResposta"> Verificar
 		</b-button>
@@ -35,7 +35,7 @@
 import PersonConjugation from "./PersonConjugation.vue";
 
 export default {
-	props: ["verb"],
+	props: ["verb", "tense"],
 	components: {
 		PersonConjugation,
 	},
@@ -53,13 +53,6 @@ export default {
 			},
 		};
 	},
-
-	// watch: {
-	// 	'getCurrentVerbalTense': function () {
-	// 		this.showAnswer = false
-	// 		this.updateVerb()
-	// 	}
-	// },
 	methods: {
 		verificaResposta: function () {
 			this.verifyAnswers = !this.verifyAnswers;
@@ -85,7 +78,7 @@ export default {
 
 .custom-width {
 	width: auto;
-	max-width: 300px;
+	max-width: 500px;
 }
 
 ul {

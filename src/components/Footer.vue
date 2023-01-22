@@ -1,5 +1,5 @@
 <template>
-    <footer class="d-flex align-items-center justify-content-center p-2 bg-dark text-light footer-height">
+    <footer class="d-flex align-items-center justify-content-center p-2 bg-dark text-light footer-height fixed-bottom">
         <span>
             Feito com 🪄 por LelePG
         </span>

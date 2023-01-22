@@ -6,15 +6,15 @@
 		<b-form class="pa-2 d-flex justify-content-around w-100 ">
 			<b-form-group class="p-2">
 				<h4>Indicativo</h4>
-				<b-form-checkbox v-for="tense in indicative" v-model="verbalDescriptions" :value="`Indicativo-${tense.value}`"
-					:key="`Indicativo-${tense.value}}`">{{
+				<b-form-checkbox v-for="tense in indicative" v-model="verbalDescriptions" :value="`Indicativo-${tense.value}-${tense.text}`"
+					:key="`Indicativo-${tense.value}`">{{
 						tense.text
 					}}</b-form-checkbox>
 			</b-form-group>
 
 			<b-form-group class="p-2">
 				<h4>Subjuntivo</h4>
-				<b-form-checkbox v-for="tense in subjuntive" v-model="verbalDescriptions" :value="`Subjuntivo-${tense.value}`"
+				<b-form-checkbox v-for="tense in subjuntive" v-model="verbalDescriptions" :value="`Subjuntivo-${tense.value}-${tense.text}`"
 					:key="`Subjuntivo-${tense.value}}`">{{
 						tense.text
 					}}</b-form-checkbox>
@@ -22,7 +22,7 @@
 
 			<b-form-group class="p-2">
 				<h4>Imperativo</h4>
-				<b-form-checkbox v-for="tense in imperative" v-model="verbalDescriptions" :value="`Imperativo-${tense.value}`"
+				<b-form-checkbox v-for="tense in imperative" v-model="verbalDescriptions" :value="`Imperativo-${tense.value}-${tense.text}`"
 					:key="`Imperativo-${tense.value}}`">{{
 						tense.text
 					}}</b-form-checkbox>
