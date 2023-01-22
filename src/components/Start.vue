@@ -1,50 +1,55 @@
 <template>
 	<div class="bg-light pb-5 d-flex flex-column align-items-center text-dark">
+
 		<h4 class="pt-4 pb-3 text-center font-weight-bolder">
 			Selecione os tempos verbais que você quer praticar e clique em iniciar!
 		</h4>
+
 		<b-form class="pa-2 d-flex justify-content-around w-100 ">
 			<b-form-group class="p-2">
 				<h4>Indicativo</h4>
-				<b-form-checkbox v-for="tense in indicative" v-model="verbalDescriptions" :value="`Indicativo-${tense.value}-${tense.text}`"
-					:key="`Indicativo-${tense.value}`">{{
+				<b-form-checkbox v-for="tense in indicative" v-model="verbalDescriptions"
+					:value="`Indicativo-${tense.value}-${tense.text}`" :key="`Indicativo-${tense.value}`">{{
 						tense.text
 					}}</b-form-checkbox>
 			</b-form-group>
 
 			<b-form-group class="p-2">
 				<h4>Subjuntivo</h4>
-				<b-form-checkbox v-for="tense in subjuntive" v-model="verbalDescriptions" :value="`Subjuntivo-${tense.value}-${tense.text}`"
-					:key="`Subjuntivo-${tense.value}}`">{{
+				<b-form-checkbox v-for="tense in subjuntive" v-model="verbalDescriptions"
+					:value="`Subjuntivo-${tense.value}-${tense.text}`" :key="`Subjuntivo-${tense.value}}`">{{
 						tense.text
 					}}</b-form-checkbox>
 			</b-form-group>
 
 			<b-form-group class="p-2">
 				<h4>Imperativo</h4>
-				<b-form-checkbox v-for="tense in imperative" v-model="verbalDescriptions" :value="`Imperativo-${tense.value}-${tense.text}`"
-					:key="`Imperativo-${tense.value}}`">{{
+				<b-form-checkbox v-for="tense in imperative" v-model="verbalDescriptions"
+					:value="`Imperativo-${tense.value}-${tense.text}`" :key="`Imperativo-${tense.value}}`">{{
 						tense.text
 					}}</b-form-checkbox>
 			</b-form-group>
 		</b-form>
 
 		<h4 clas="text-center font-weight-bolder">Selecione um set de verbos</h4>
+
 		<b-form-group class="text-center">
 			<b-form-radio v-model="verbsToBeUsed" value="default">Selecionar sets padrão
 			</b-form-radio>
 			<b-form-radio v-model="verbsToBeUsed" value="custom">Quero usar meus verbos
 			</b-form-radio>
 		</b-form-group>
+
 		<div class="w-50">
 			<b-form-select v-if="verbsToBeUsed === 'default'" v-model="verbalSet" :options="verbalSetsWithNames">
 			</b-form-select>
 			<b-form-input v-if="verbsToBeUsed === 'custom'" v-model="customSet"
 				placeholder="Digite verbos separados por vírgula"></b-form-input>
 		</div>
+
 		<router-link to="/play" event="" @click.native="loadInfo()"
 			class="w-75 mt-3 d-flex justify-content-center text-decoration-none">
-			<b-button class="bg-secondary w-25 start-button">Iniciar </b-button>
+			<b-button class="bg-secondary text-white w-25 start-button">Iniciar </b-button>
 		</router-link>
 	</div>
 </template>
@@ -90,7 +95,7 @@ export default {
 		};
 	},
 	methods: {
-		...mapMutations[("setVerbalDescriptions", "setAuxVerb", "setVerbs", "clearCurrentIndex", "clearPoints")],
+		...mapMutations[("setVerbalDescriptions", "setVerbs", "clearCurrentIndex", "clearPoints")],
 		loadInfo: async function () {
 			if (!this.verbalDescriptions.length) {
 				window.alert("Você precisa selecionar pelo menos um tempo.");

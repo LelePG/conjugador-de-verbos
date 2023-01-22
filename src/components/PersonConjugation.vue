@@ -2,8 +2,8 @@
 	<li class="text-dark d-flex justify-content-between m-1 w-100">
 		<label class="mr-2">{{ person }}</label>
 		<input v-if="showAnswer" type="text" :name="person" :placeholder="answer" disabled :class="inputClasses" />
-		<input v-else type="text" :name="person" @focus="changeInputWithFocus" v-model="userInput"
-			:class="inputClasses" />
+		<input v-else type="text" :name="person" v-model="userInput" :id="inputId"
+			@keydown="changeFocusToNextInput($event)" :class="inputClasses" />
 	</li>
 </template>
 
@@ -11,7 +11,7 @@
 import { mapMutations, mapGetters } from "vuex";
 
 export default {
-	props: ["person", "answer", "showAnswer", "correctConjugation"],
+	props: ["person", "answer", "showAnswer", "correctConjugation", "inputId", "changeFocusToNextInput"],
 	data: function () {
 		return {
 			userInput: "",
@@ -31,26 +31,23 @@ export default {
 	},
 	watch: {
 		correctConjugation: function () {
-			const isAlreadyCorrect = this.classes.includes(" correct");
-			const isAlreadyWrong = this.classes.includes(" wrong");
+			const isAlreadyCorrect = this.classes.includes("correct");
+			const isAlreadyWrong = this.classes.includes("wrong");
 			if (isAlreadyCorrect) {
 				return;
 			}
-			let score = 0;
-			if (this.conjugationIsCorrect()) {
+			else if (this.conjugationIsCorrect()) {
 				if (isAlreadyWrong) {
-					score = 2;
 					this.classes = this.classes.replace("wrong", "correct");
 				} else {
-					score = 5;
 					this.classes = this.classes.concat(" correct");
 				}
+				this.$store.commit("addPoints");
 			} else {
 				if (!isAlreadyWrong) {
 					this.classes = this.classes.concat(" wrong");
 				}
 			}
-			this.$store.commit("addPoints", score);
 		},
 		'getCurrentVerbalTense': function () {
 			this.userInput = ""
@@ -58,11 +55,7 @@ export default {
 		}
 	},
 	methods: {
-		...mapMutations(["setInputWithFocus, addPoints"]),
-		changeInputWithFocus: function () {
-			const focusedInput = this.$el.querySelector(`input[type="text"]`);
-			this.$store.commit("setInputWithFocus", focusedInput);
-		},
+		...mapMutations(["addPoints"]),
 		conjugationIsCorrect() {
 			return this.userInput.toLowerCase().trim() === this.answer.toLowerCase().trim();
 		},

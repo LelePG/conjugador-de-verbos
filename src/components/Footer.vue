@@ -1,9 +1,9 @@
 <template>
-    <footer class="d-flex align-items-center justify-content-center p-2 bg-dark text-light footer-height fixed-bottom">
+    <footer class="d-flex align-items-center justify-content-center p-2 bg-dark text-light footer-height">
         <span>
             Feito com 🪄 por LelePG
         </span>
-        <a href="https://github.com/LelePG/verben-konjugieren" className="mx-3" target="_blank" rel="noreferrer">
+        <a href="https://github.com/LelePG/conjugador-de-verbos" className="mx-3" target="_blank" rel="noreferrer">
             <img class="ml-3 m-1 logo-footer" :src="image" />
         </a>
     </footer>

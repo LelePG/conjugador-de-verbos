@@ -1,25 +1,26 @@
 <template>
     <div id="my-info" class="d-flex flex-column justify-content-center">
-        <img id="me" src="../assets/leticia.jpg">
+
+        <img id="me" src="../assets/leticia.jpg" />
+
         <div class="popover-info hidden">
-            <h2 class="text-center">Hallo!!</h2>
-            <p class="text-justify flex-grow-1">Olá! Eu sou a Letícia, e este é o projeto Verben Konjugieren. Este
-                projeto tem o
-                intuito de ajudar na
-                prática de conjugações de verbos em alemão, e você pode selecionar alguns sets de verbos e tempos
-                verbais
+            <h2 class="text-center">Hola!</h2>
+            <p class="text-justify flex-grow-1">Olá! Eu sou a Letícia, e este é o projeto
+                Conjugador de Verbos. Este projeto tem o intuito de ajudar na
+                prática de conjugações de verbos em espanhol, e você pode selecionar
+                alguns sets de verbos e tempos verbais
                 para praticar, ou inserir seus próprios verbos.
             </p>
-            <p class="text-justify">Dentro da aplicação, você pode ver a resposta da conjugação dos verbos e
-                verificar
-                se o que você digitou
-                está
-                correto ou não.
+            <p class="text-justify">Dentro da aplicação, você pode ver a resposta da
+                conjugação dos verbos e verificar se o que você digitou
+                está correto ou não.
             </p>
             <p class="text-justify">O projeto é open source então sinta-se a vontade para contribuir com ele. O
                 repositório pode ser acessado clicando no ícone do Github no rodapé da página.
             </p>
-            <hr>
+
+            <hr />
+
             <h5 class="text-sm-center ">Redes Sociais</h5>
             <ul id="socials" class="d-flex justify-content-center">
                 <li v-for="link in links" :key="link.url" class="mx-2">
@@ -28,10 +29,14 @@
                     </a>
                 </li>
             </ul>
+
             <hr />
+
             <span>Desenho por <a target="_blank" href="https://www.instagram.com/rbmaya_art/">@rbmaya_art</a>
             </span>
+
         </div>
+
     </div>
 
 </template>
@@ -44,7 +49,7 @@ export default {
             links: [
                 { image: require("../assets/logos/github.png"), url: "https://github.com/LelePG" },
                 { image: require("../assets/logos/polywork.png"), url: "https://www.polywork.com/lelepg" },
-                { image: require("../assets/logos/linkedin.png"), url: "https://www.linkedin.com/in/lelepg/ " }
+                { image: require("../assets/logos/linkedin.png"), url: "https://www.linkedin.com/in/lelepg/" }
             ]
         }
     }

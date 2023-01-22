@@ -1,12 +1,15 @@
 <template>
-	<div class="bg-light">
+	<div class="bg-light pb-4">
+
 		<div class="d-flex flex-column align-items-center text-dark pt-2">
 			<h4 class="text-sm-center">O tempo é {{ currentVerb.tense }}</h4>
-			<h5>Pontos: {{ getPoints }}</h5>
+			<h5>Pontos: {{ parseFloat(getPercentage).toFixed(2) + "%" }}</h5>
 		</div>
+
 		<div class="p-0 m-auto d-flex justify-content-around flex-wrap">
 			<Conjugations v-for="verb in currentVerb.verbs" :key="`${currentVerb.tense}-${verb.name}`" :verb="verb" />
 		</div>
+
 		<div class="text-center">
 			<router-link to="/">
 				<b-button class="bg-primary text-dark mx-2 my-1">Voltar</b-button>
@@ -17,6 +20,7 @@
 				@click="incrementIndex">Próximo
 			</b-button>
 		</div>
+
 	</div>
 </template>
 
@@ -31,7 +35,7 @@ export default {
 		Conjugations,
 	},
 	computed: {
-		...mapGetters(["getPoints", "getVerbs", "getVerbalDescriptions", "getCurrentVerbalTense", "getVerbs", "getAvailableVerbalDescriptions", "getCurrentIndex"]),
+		...mapGetters(["getPercentage", "getVerbs", "getVerbalDescriptions", "getCurrentIndex"]),
 		index: function () {
 			return this.getCurrentIndex
 		},
