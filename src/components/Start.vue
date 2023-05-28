@@ -57,7 +57,7 @@
 
 <script>
 import { mapMutations } from "vuex";
-import sets from "../assets/sets.js";
+import sets from "../assets/verbs.js";
 export default {
 	data: function () {
 		return {

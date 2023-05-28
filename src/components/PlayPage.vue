@@ -40,7 +40,6 @@ export default {
 			return this.getCurrentIndex
 		},
 		currentVerb: function () {
-			console.log(this.conjugationData[this.index])
 			return this.conjugationData[this.index];
 		},
 	},
@@ -64,16 +63,19 @@ export default {
 		this.allConjugationsOfVerbs = this.getVerbs.map(verb => {
 			try {
 				let conjugations = conjugator.conjugateSync(verb.name)[0].conjugation
+				if(conjugations === undefined){
+					throw new Error();
+				}	
 				return { ...verb, conjugations }
 			} catch {
-				return { ...verb, erro: true }
+				return { ...verb, error: true }
 			}
 		})
 
 		this.conjugationData = this.getVerbalDescriptions.map(verbalDescription => {
 			const [mode, tense, displayTense] = verbalDescription.split("-")
 			const verbConjugations = this.allConjugationsOfVerbs.map(verb => {
-				if (!verb.erro) {
+				if (!verb.error) {
 					let conjugation = verb.conjugations[mode][tense]
 					return { name: verb.name, translation: verb.translation, conjugation }
 				} else {

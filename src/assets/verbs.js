@@ -19,7 +19,7 @@ const set3 = [
 	{ name: "tener", translation: "ter" },
 	{ name: "comprar", translation: "comprar" },
 	{ name: "vivir", translation: "viver" },
-	{ name: "oir", translation: "ouvir" },
+	{ name: "oír", translation: "ouvir" },
 ];
 
 const set4 = [
