@@ -22,16 +22,13 @@
 				:changeFocusToNextInput="changeFocusToNextInput" />
 			<PersonConjugation :data="verbalPeople.usted" :showAnswer="showAnswer" :correctConjugation="verifyAnswers"
 				:changeFocusToNextInput="changeFocusToNextInput" />
-			<PersonConjugation :data="verbalPeople.nosotros" :showAnswer="showAnswer"
-				:correctConjugation="verifyAnswers" :changeFocusToNextInput="changeFocusToNextInput" />
-			<PersonConjugation :data="verbalPeople.vosotros" :showAnswer="showAnswer"
-				:correctConjugation="verifyAnswers" :changeFocusToNextInput="changeFocusToNextInput" />
+			<PersonConjugation :data="verbalPeople.nosotros" :showAnswer="showAnswer" :correctConjugation="verifyAnswers"
+				:changeFocusToNextInput="changeFocusToNextInput" />
+			<PersonConjugation :data="verbalPeople.vosotros" :showAnswer="showAnswer" :correctConjugation="verifyAnswers"
+				:changeFocusToNextInput="changeFocusToNextInput" />
 			<PersonConjugation :data="verbalPeople.ustedes" :showAnswer="showAnswer" :correctConjugation="verifyAnswers"
 				:changeFocusToNextInput="changeFocusToNextInput" />
 		</ul>
-
-		<b-button v-if="!verb.error" class="bg-primary text-dark" block @click="verifyAnswers = !verifyAnswers"> Verificar
-		</b-button>
 
 	</div>
 </template>
@@ -40,13 +37,12 @@
 import PersonConjugation from "./PersonConjugation.vue";
 
 export default {
-	props: ["verb"],
+	props: ["verb", "verifyAnswers"],
 	components: {
 		PersonConjugation,
 	},
 	data: function () {
 		return {
-			verifyAnswers: false,
 			showAnswer: false,
 			verbalPeople: {
 				yo: [],

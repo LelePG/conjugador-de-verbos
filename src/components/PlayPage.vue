@@ -7,7 +7,8 @@
 		</div>
 
 		<div class="p-0 m-auto d-flex justify-content-around flex-wrap">
-			<Conjugations v-for="verb in currentVerb.verbs" :key="`${currentVerb.tense}-${verb.name}`" :verb="verb" />
+			<Conjugations v-for="verb in currentVerb.verbs" :key="`${currentVerb.tense}-${verb.name}`" :verb="verb"
+				:verify-answers="verifyAnswers" />
 		</div>
 
 		<div class="text-center">
@@ -15,6 +16,8 @@
 				<b-button class="bg-primary text-dark mx-2 my-1">Voltar</b-button>
 			</router-link>
 			<b-button v-if="index > 0" class="bg-primary text-dark mx-2 my-1" @click="decrementIndex">Anterior
+			</b-button>
+			<b-button class="bg-primary text-dark px-5" @click="verifyAnswers = !verifyAnswers"> Verificar
 			</b-button>
 			<b-button v-if="index < (getTotalTenses - 1)" class="bg-primary text-dark mx-2 my-1"
 				@click="incrementIndex">Próximo
@@ -45,6 +48,7 @@ export default {
 	},
 	data: function () {
 		return {
+			verifyAnswers: false,
 			currentVerbalDescription: "",
 			allConjugationsOfVerbs: [],
 			conjugationData: []
@@ -63,9 +67,9 @@ export default {
 		this.allConjugationsOfVerbs = this.getVerbs.map(verb => {
 			try {
 				let conjugations = conjugator.conjugateSync(verb.name)[0].conjugation
-				if(conjugations === undefined){
+				if (conjugations === undefined) {
 					throw new Error();
-				}	
+				}
 				return { ...verb, conjugations }
 			} catch {
 				return { ...verb, error: true }
