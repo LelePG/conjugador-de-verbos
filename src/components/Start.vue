@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-light pb-5 d-flex flex-column align-items-center text-dark">
+	<div class="bg-light my-auto d-flex flex-column align-items-center text-dark ">
 
 		<h4 class="pt-4 pb-3 text-center font-weight-bolder">
 			Selecione os tempos verbais que você quer praticar e clique em iniciar!

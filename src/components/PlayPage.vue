@@ -1,6 +1,5 @@
 <template>
-	<div class="bg-light pb-4">
-
+	<div class="bg-light mb-auto">
 		<div class="d-flex flex-column align-items-center text-dark pt-2">
 			<h4 class="text-sm-center">O tempo é {{ currentVerb.tense }}</h4>
 			<h5>Pontos: {{ parseFloat(getPercentage).toFixed(2) + "%" }}</h5>
@@ -13,11 +12,11 @@
 
 		<div class="text-center">
 			<router-link to="/">
-				<b-button class="bg-primary text-dark mx-2 my-1">Voltar</b-button>
+				<b-button class="bg-primary text-dark mx-2 my-1">Voltar ao menu</b-button>
 			</router-link>
-			<b-button v-if="index > 0" class="bg-primary text-dark mx-2 my-1" @click="decrementIndex">Anterior
-			</b-button>
 			<b-button class="bg-primary text-dark px-5" @click="verifyAnswers = !verifyAnswers"> Verificar
+			</b-button>
+			<b-button v-if="index > 0" class="bg-primary text-dark mx-2 my-1" @click="decrementIndex">Anterior
 			</b-button>
 			<b-button v-if="index < (getTotalTenses - 1)" class="bg-primary text-dark mx-2 my-1"
 				@click="incrementIndex">Próximo
